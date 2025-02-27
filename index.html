@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BA (Hons) Fashion - Visual Grade Descriptors Guide</title>
+    
+    <!-- Load React -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
+    
+    <!-- Load Babel to handle JSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8f8f8;
+            padding: 0;
+            margin: 0;
+            color: #333;
+        }
+        
+        .ku-content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .ku-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #aaaaaa;
+            padding-bottom: 20px;
+        }
+        
+        .ku-button {
+            display: inline-block;
+            background-color: #FFE800;
+            color: #000;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin: 10px 0;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .ku-button:hover {
+            background-color: #e6d000;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Table styling from KU Canvas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #ddd;
+        }
+        
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        
+        caption {
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ku-content-wrapper">
+        <div class="ku-content">
+            <div class="header">
+                <img src="KSA_secondary_lock-up.png" alt="Kingston School of Art Logo" class="h-6 mb-4 mx-auto block">
+                <h1 class="text-2xl font-bold mb-4">Understanding Grade Descriptors</h1>
+                <p>This interactive guide aims to help you understand the grade descriptors used to assess your work on the BA (Hons) Fashion program. Click on each grade band to see what tutors look for, and to understand the key differences between grade bands. This will help you in your efforts to achieve higher grades, through identifying specific areas for improvement.</p>
+            </div>
+            
+            <div id="grade-descriptors-app"></div>
+        </div>
+        
+        <div class="footer">
+            <p>Kingston School of Art - BA (Hons) Fashion Program - Learning Outcomes, Feedback and Assessment KnowledgeBase</p>
+            <p>© 2025 Kingston University</p>
+        </div>
+    </div>
+    
+    <script type="text/babel">
+        const GradeDescriptors = () => {
+          const [activeGrade, setActiveGrade] = useState('first-plus');
+          
+          const grades = [
+            {
+              id: 'first-plus',
+              title: 'First Class (A+)',
+              range: '85-100%',
+              color: 'bg-green-700',
+              textColor: 'text-white',
+              qualities: [
+                { title: 'Research', description: 'Exceptional evidence of research skills with a comprehensive range of evidence' },
+                { title: 'Design Development', description: 'Outstanding level of study that goes beyond the ideas and practices studied' },
+                { title: 'Technical Skills', description: 'Exceptional technical ability and execution' },
+                { title: 'Presentation', description: 'Professional, innovative presentation with perfect attention to detail' },
+                { title: 'Creativity', description: 'Highly innovative with new concepts and well-judged experimentation and risk-taking' },
+                { title: 'Critical Thinking', description: 'Outstanding academic level of critical evaluation and analysis' }
+              ]
+            },
+            {
+              id: 'first',
+              title: 'First Class (A)',
+              range: '70-84%',
+              color: 'bg-green-600',
+              textColor: 'text-white',
+              qualities: [
+                { title: 'Research', description: 'Excellent and detailed understanding with strong evidence and critical analysis' },
+                { title: 'Design Development', description: 'Excellent level of study with creative and critical response to content' },
+                { title: 'Technical Skills', description: 'Very good technical skills with appropriate methods to resolve problems' },
+                { title: 'Presentation', description: 'Professional presentation with strong attention to detail' },
+                { title: 'Creativity', description: 'Willingness to innovate, experiment with new concepts, and take well-judged risks' },
+                { title: 'Critical Thinking', description: 'Very good academic level of critical evaluation and analysis' }
+              ]
+            },
+            {
+              id: 'upper-second',
+              title: 'Upper Second (B)',
+              range: '60-69%',
+              color: 'bg-green-500',
+              textColor: 'text-white',
+              qualities: [
+                { title: 'Research', description: 'Good knowledge and understanding with solid research skills' },
+                { title: 'Design Development', description: 'Good ability to analyze ideas and concepts critically' },
+                { title: 'Technical Skills', description: 'Good technical skills and ability to resolve practical issues' },
+                { title: 'Presentation', description: 'Professional approach to presentation of work' },
+                { title: 'Creativity', description: 'Willingness to innovate and experiment with new ideas and concepts' },
+                { title: 'Critical Thinking', description: 'Recognition of complexities with good academic/design practices' }
+              ]
+            },
+            {
+              id: 'lower-second',
+              title: 'Lower Second (C)',
+              range: '50-59%',
+              color: 'bg-yellow-400',
+              textColor: 'text-black',
+              qualities: [
+                { title: 'Research', description: 'Some knowledge and understanding, may be limited in scope' },
+                { title: 'Design Development', description: 'Some critical analysis but may not always focus on key points' },
+                { title: 'Technical Skills', description: 'Satisfactory application of methods and skills to resolve problems' },
+                { title: 'Presentation', description: 'Satisfactory presentation that may lack refinement' },
+                { title: 'Creativity', description: 'Mostly sticks to familiar ideas with some willingness to experiment' },
+                { title: 'Critical Thinking', description: 'Recognition of some but not all complexities of the area of study' }
+              ]
+            },
+            {
+              id: 'third',
+              title: 'Third Class (D)',
+              range: '40-49%',
+              color: 'bg-yellow-500',
+              textColor: 'text-black',
+              qualities: [
+                { title: 'Research', description: 'Basic knowledge and understanding of required skills and practices' },
+                { title: 'Design Development', description: 'Descriptive rather than analytical, with oversimplified decision-making' },
+                { title: 'Technical Skills', description: 'Adequate application of methods to resolve straightforward problems' },
+                { title: 'Presentation', description: 'Adequate presentation but may lack professionalism' },
+                { title: 'Creativity', description: 'Sticks to familiar ideas with little exploration of new territory' },
+                { title: 'Critical Thinking', description: 'Beginning to develop professional approach but not consistent throughout' }
+              ]
+            },
+            {
+              id: 'marginal-fail',
+              title: 'Marginal Fail (FM)',
+              range: '35-39%',
+              color: 'bg-amber-500',
+              textColor: 'text-black',
+              qualities: [
+                { title: 'Research', description: 'Limited knowledge and understanding of required skills and practices' },
+                { title: 'Design Development', description: 'Descriptive with little attempt to analyze or develop ideas' },
+                { title: 'Technical Skills', description: 'Not always accurate/appropriate to solve straightforward problems' },
+                { title: 'Presentation', description: 'Presentation skills not sufficient for this level of study' },
+                { title: 'Creativity', description: 'Sticks only to familiar ideas with no exploration of new territory' },
+                { title: 'Critical Thinking', description: 'Little evidence of professional approach or good academic practices' }
+              ]
+            },
+            {
+              id: 'fail',
+              title: 'Fail (F)',
+              range: '0-34%',
+              color: 'bg-red-600',
+              textColor: 'text-white',
+              qualities: [
+                { title: 'Research', description: 'Little knowledge or understanding of required skills and practices' },
+                { title: 'Design Development', description: 'No attempt to analyze ideas/themes or arguments' },
+                { title: 'Technical Skills', description: 'Poor technical skills with inadequate application of methods' },
+                { title: 'Presentation', description: 'Poor presentation skills that do not meet requirements' },
+                { title: 'Creativity', description: 'No engagement with new ideas or creative development' },
+                { title: 'Critical Thinking', description: 'Does not meet most learning outcomes and lacks academic practice' }
+              ]
+            }
+          ];
+          
+          const activeGradeData = grades.find(grade => grade.id === activeGrade);
+          
+          return (
+            <div className="max-w-4xl mx-auto p-0">
+              <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                {grades.map(grade => (
+                  <button
+                    key={grade.id}
+                    className={`px-4 py-2 rounded-md font-medium transition-all ${
+                      activeGrade === grade.id ? 
+                      `${grade.color} ${grade.textColor} ring-2 ring-offset-2 ring-gray-400` : 
+                      'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                    onClick={() => setActiveGrade(grade.id)}
+                  >
+                    {grade.range}
+                  </button>
+                ))}
+              </div>
+              
+              <div className={`${activeGradeData.color} ${activeGradeData.textColor} p-6 rounded-lg mb-6`}>
+                <h2 className="text-xl font-bold mb-2">{activeGradeData.title} ({activeGradeData.range})</h2>
+                <p className="text-lg mb-4">Overall Quality: {
+                  activeGrade === 'first-plus' ? 'Outstanding' :
+                  activeGrade === 'first' ? 'Very Good' :
+                  activeGrade === 'upper-second' ? 'Good' :
+                  activeGrade === 'lower-second' ? 'Satisfactory' :
+                  activeGrade === 'third' ? 'Adequate' :
+                  activeGrade === 'marginal-fail' ? 'Unsatisfactory' : 'Poor'
+                }</p>
+              </div>
+              
+              <table>
+                <caption>
+                  <h3 className="text-xl font-bold mb-2">Assessment Criteria</h3>
+                </caption>
+                <tbody>
+                  {activeGradeData.qualities.map((quality, index) => (
+                    <tr key={index}>
+                      <th style={{width: "25%"}}>{quality.title}</th>
+                      <td>{quality.description}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              
+              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 className="font-bold mb-2">How to move up to the next grade band:</h3>
+                <ul className="list-disc pl-5 space-y-2">
+                  {activeGrade === 'fail' && (
+                    <div>
+                      <li>Develop basic knowledge of skills and practices covered in the module</li>
+                      <li>Make some attempt to analyze materials rather than just describe</li>
+                      <li>Apply appropriate methods to solve basic problems</li>
+                      <li>Show more attention to presentation basics</li>
+                      <li>Begin to engage with at least some new ideas</li>
+                    </div>
+                  )}
+                  {activeGrade === 'marginal-fail' && (
+                    <div>
+                      <li>Demonstrate more consistent knowledge of required skills</li>
+                      <li>Begin to analyze your work rather than just describing it</li>
+                      <li>Make decisions with some evidence to support them</li>
+                      <li>Improve basic technical and presentation skills</li>
+                      <li>Show at least some willingness to explore beyond familiar ideas</li>
+                    </div>
+                  )}
+                  {activeGrade === 'third' && (
+                    <div>
+                      <li>Expand your research beyond the obvious sources</li>
+                      <li>Focus more on analysis rather than description</li>
+                      <li>Show more attention to presentation details</li>
+                      <li>Demonstrate more consistent professionalism in your approach</li>
+                      <li>Try to experiment with new ideas rather than staying in comfort zone</li>
+                    </div>
+                  )}
+                  {activeGrade === 'lower-second' && (
+                    <div>
+                      <li>Deepen your research and make more meaningful connections</li>
+                      <li>Develop stronger analytical skills in your design development</li>
+                      <li>Improve the professionalism of your presentation</li>
+                      <li>Take more creative risks and explore new territory</li>
+                      <li>Recognize more of the complexities in your area of study</li>
+                    </div>
+                  )}
+                  {activeGrade === 'upper-second' && (
+                    <div>
+                      <li>Extend your research beyond the expected sources</li>
+                      <li>Demonstrate more sophisticated analysis and critical thinking</li>
+                      <li>Refine technical and presentation skills to a higher level</li>
+                      <li>Show more innovation and well-considered experimentation</li>
+                      <li>Take more creative risks in your approach to design</li>
+                    </div>
+                  )}
+                  {activeGrade === 'first' && (
+                    <div>
+                      <li>Pursue truly exceptional and original research</li>
+                      <li>Demonstrate outstanding critical thinking beyond normal expectations</li>
+                      <li>Perfect every aspect of technical execution</li>
+                      <li>Take well-judged creative risks that result in highly innovative outcomes</li>
+                      <li>Show evidence of innovation throughout all aspects of your work</li>
+                    </div>
+                  )}
+                  {activeGrade === 'first-plus' && (
+                    <div>
+                      <li>You're already at the highest grade band - maintaining this level of excellence requires consistent outstanding work across all aspects!</li>
+                    </div>
+                  )}
+                </ul>
+              </div>
+              
+              <div className="mt-6 p-3 bg-gray-100 border-l-4 border-yellow-400 text-sm text-gray-700">
+                <p>Note: This is a visual interpretation of the Kingston School of Art BA (Hons) Fashion grade descriptors. Always refer to the official grade descriptors in your course handbook for definitive guidance, a link can be found below.</p>
+              </div>
+              
+              <div className="mt-6">
+                <a className="ku-button" href="https://canvas.kingston.ac.uk/courses/32501/pages/full-grade-descriptors" target="_blank">Access full Grade Descriptors</a>
+                <a className="ku-button ml-4" href="https://canvas.kingston.ac.uk/courses/32501" title="Back to Module Home Page">Back to Module Home Page</a>
+              </div>
+            </div>
+          );
+        };
+
+        // Import useState from React
+        const { useState } = React;
+        
+        // Render the app
+        ReactDOM.render(<GradeDescriptors />, document.getElementById('grade-descriptors-app'));
+    </script>
+</body>
+</html>
