@@ -18,7 +18,7 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f8f8f8;
+            background-color: #ffffff;
             padding: 0;
             margin: 0;
             color: #333;
@@ -32,8 +32,6 @@
         
         .ku-content {
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 30px;
             margin-bottom: 30px;
         }
@@ -47,11 +45,12 @@
         
         .ku-button {
             display: inline-block;
-            background-color: #ffed00;
+            background-color: #FFF200;
             color: #000;
             font-weight: bold;
+            font-size: 1rem;
             padding: 8px 15px;
-            border-radius: 4px;
+            border-radius: 0;
             text-decoration: none;
             margin: 10px 0;
             border: none;
@@ -60,7 +59,7 @@
         }
         
         .ku-button:hover {
-            background-color: #e6d000;
+            background-color: #FFF200;
         }
         
         .footer {
@@ -80,7 +79,7 @@
         }
         
         th {
-            background-color: #f2f2f2;
+            background-color: #f1f1f1;
             text-align: left;
             padding: 12px;
             border: 1px solid #ddd;
@@ -103,7 +102,7 @@
     <div class="ku-content-wrapper">
         <div class="ku-content">
             <div class="header">
-                <img src="KSA_secondary_lock-up.png" alt="Kingston School of Art" class="h-6 mb-4 mx-auto block">
+                <img src="KSA_secondary_lock-up.png" alt="Kingston School of Art Logo" class="h-6 mb-4 mx-auto block">
                 <h1 class="text-2xl font-bold mb-4">Understanding Grade Descriptors</h1>
                 <p>This interactive guide aims to help you understand the grade descriptors used to assess your work on the BA (Hons) Fashion program. Click on each grade band to see what tutors look for, and to understand the key differences between grade bands. This will help you in your efforts to achieve higher grades, through identifying specific areas for improvement.</p>
             </div>
@@ -112,7 +111,7 @@
         </div>
         
         <div class="footer">
-            <p>Kingston School of Art - BA (Hons) Fashion Program - Learning Outcomes, Feedback and Assessment KnowledgeBase</p>
+            <p>Kingston School of Art - BA (Hons) Fashion Program - Learning Outcomes, Feedback and Assessment Knowledge Base</p>
             <p>© 2025 Kingston University</p>
         </div>
     </div>
@@ -120,111 +119,98 @@
     <script type="text/babel">
         const GradeDescriptors = () => {
           const [activeGrade, setActiveGrade] = useState('first-plus');
+          const [showMatrix, setShowMatrix] = useState(false);
           
           const grades = [
             {
               id: 'first-plus',
-              title: 'First Class (A+)',
-              range: '85-100%',
-              color: 'bg-green-700',
-              textColor: 'text-white',
+              title: 'Distinction',
+              range: '85% and above',
+              color: 'bg-[#00FF00]',
+              textColor: 'text-black',
               qualities: [
-                { title: 'Research', description: 'Exceptional evidence of research skills with a comprehensive range of evidence' },
-                { title: 'Design Development', description: 'Outstanding level of study that goes beyond the ideas and practices studied' },
-                { title: 'Technical Skills', description: 'Exceptional technical ability and execution' },
-                { title: 'Presentation', description: 'Professional, innovative presentation with perfect attention to detail' },
-                { title: 'Creativity', description: 'Highly innovative with new concepts and well-judged experimentation and risk-taking' },
-                { title: 'Critical Thinking', description: 'Outstanding academic level of critical evaluation and analysis' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for exceptional research that goes far beyond expectations. You should demonstrate original thinking and provide strong evidence to support your ideas. Your work should show deep understanding of relevant contexts and critically analyze sources with comprehensive evidence.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see innovative approaches that challenge conventional thinking. Your technical skills should be excellent, with clear evidence of creative risk-taking and problem-solving. Your work should show a strong connection between concept development and making/production techniques.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect extremely clear and professional presentation that convincingly communicates your ideas. Your work should show you understand your audience\'s needs and have carefully selected and refined your materials to create maximum impact.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you can integrate your personal identity into your professional practice. You should demonstrate that you can work productively on your own, collaborate effectively in teams, and take leadership roles when needed. You should take full responsibility for your own learning and development.' }
               ]
             },
             {
               id: 'first',
-              title: 'First Class (A)',
+              title: 'First Class',
               range: '70-84%',
-              color: 'bg-green-600',
-              textColor: 'text-white',
+              color: 'bg-[#7FFF00]',
+              textColor: 'text-black',
               qualities: [
-                { title: 'Research', description: 'Excellent and detailed understanding with strong evidence and critical analysis' },
-                { title: 'Design Development', description: 'Excellent level of study with creative and critical response to content' },
-                { title: 'Technical Skills', description: 'Very good technical skills with appropriate methods to resolve problems' },
-                { title: 'Presentation', description: 'Professional presentation with strong attention to detail' },
-                { title: 'Creativity', description: 'Willingness to innovate, experiment with new concepts, and take well-judged risks' },
-                { title: 'Critical Thinking', description: 'Very good academic level of critical evaluation and analysis' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for extensive, well-informed research from diverse sources. You should demonstrate independent thinking in how you analyze your findings. Your work should show strong critical examination of relevant contexts with clear evaluation of sources.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see how you connect your ideas with strong technical skills to explore unfamiliar concepts. You should demonstrate creative risk-taking and show how your critical evaluation has informed your design decisions. Your technical execution should be excellent.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect your work to engage and persuade your audience effectively. You should demonstrate sensitivity in how you select and present your materials. Your presentation should show a clear understanding of audience needs and contextual factors.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you take full responsibility for your learning and understand both the possibilities and requirements of your subject. You should demonstrate that you can work effectively independently, as part of a team, or in leadership roles.' }
               ]
             },
             {
               id: 'upper-second',
-              title: 'Upper Second (B)',
+              title: 'Upper Second (2:1)',
               range: '60-69%',
-              color: 'bg-green-500',
-              textColor: 'text-white',
+              color: 'bg-[#FFFF00]',
+              textColor: 'text-black',
               qualities: [
-                { title: 'Research', description: 'Good knowledge and understanding with solid research skills' },
-                { title: 'Design Development', description: 'Good ability to analyze ideas and concepts critically' },
-                { title: 'Technical Skills', description: 'Good technical skills and ability to resolve practical issues' },
-                { title: 'Presentation', description: 'Professional approach to presentation of work' },
-                { title: 'Creativity', description: 'Willingness to innovate and experiment with new ideas and concepts' },
-                { title: 'Critical Thinking', description: 'Recognition of complexities with good academic/design practices' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for wide-ranging research from good quality sources. You should demonstrate some independent thinking in your analysis. Your work should show accurate evaluation of relevant contexts and sources with clear personal insights.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see evidence that you\'re willing to take creative risks and use your own critical evaluation to inform your process and technique. Your technical skills should be consistently applied and show good proficiency.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect your presentation to show good awareness of audience and context. You should demonstrate good judgment in how you select and organize your materials, following appropriate conventions while adding your personal touch.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence of self-directed reflection and planning in your work. You should show that you understand the possibilities within your subject area and can work well either independently or collaboratively.' }
               ]
             },
             {
               id: 'lower-second',
-              title: 'Lower Second (C)',
+              title: 'Lower Second (2:2)',
               range: '50-59%',
-              color: 'bg-yellow-400',
+              color: 'bg-[#FFD700]',
               textColor: 'text-black',
               qualities: [
-                { title: 'Research', description: 'Some knowledge and understanding, may be limited in scope' },
-                { title: 'Design Development', description: 'Some critical analysis but may not always focus on key points' },
-                { title: 'Technical Skills', description: 'Satisfactory application of methods and skills to resolve problems' },
-                { title: 'Presentation', description: 'Satisfactory presentation that may lack refinement' },
-                { title: 'Creativity', description: 'Mostly sticks to familiar ideas with some willingness to experiment' },
-                { title: 'Critical Thinking', description: 'Recognition of some but not all complexities of the area of study' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for accurate and appropriate research covering the key elements of your project. Your analysis of context and interpretation of sources should be mostly accurate, though may have some gaps or inconsistencies.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see that you\'ve explored different materials and processes in your work. Your technical skills should be consistently applied, with some evidence that you\'ve critically evaluated your own work during the process.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect your work to be presented with good organization and a clear structure, though it may not always fully consider the audience. You should show good judgment in selecting and organizing materials to present your ideas.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for evidence that you\'re actively working to develop your understanding and using reflection to improve your work. You should demonstrate that you can work productively either alone or as part of a team.' }
               ]
             },
             {
               id: 'third',
-              title: 'Third Class (D)',
+              title: 'Third Class',
               range: '40-49%',
-              color: 'bg-yellow-500',
+              color: 'bg-[#FFA500]',
               textColor: 'text-black',
               qualities: [
-                { title: 'Research', description: 'Basic knowledge and understanding of required skills and practices' },
-                { title: 'Design Development', description: 'Descriptive rather than analytical, with oversimplified decision-making' },
-                { title: 'Technical Skills', description: 'Adequate application of methods to resolve straightforward problems' },
-                { title: 'Presentation', description: 'Adequate presentation but may lack professionalism' },
-                { title: 'Creativity', description: 'Sticks to familiar ideas with little exploration of new territory' },
-                { title: 'Critical Thinking', description: 'Beginning to develop professional approach but not consistent throughout' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for research from standard sources that covers the basics of your topic. You should show basic knowledge and understanding of required skills, though your interpretation may not always be accurate or in-depth.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see that you can work with established ideas, materials, and processes. Your technical skills should be adequate, though they may not always be consistently applied throughout your work.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect adequate presentation that follows established conventions, though it may lack professional polish. Your work should communicate basic ideas but might not fully engage the audience.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for some awareness of your subject area and your personal strengths, though your reflection and planning may not be consistently applied. You should be able to work either independently or collaboratively.' }
               ]
             },
             {
               id: 'marginal-fail',
-              title: 'Marginal Fail (FM)',
+              title: 'Marginal Fail',
               range: '35-39%',
-              color: 'bg-amber-500',
-              textColor: 'text-black',
+              color: 'bg-[#FF4500]',
+              textColor: 'text-white',
               qualities: [
-                { title: 'Research', description: 'Limited knowledge and understanding of required skills and practices' },
-                { title: 'Design Development', description: 'Descriptive with little attempt to analyze or develop ideas' },
-                { title: 'Technical Skills', description: 'Not always accurate/appropriate to solve straightforward problems' },
-                { title: 'Presentation', description: 'Presentation skills not sufficient for this level of study' },
-                { title: 'Creativity', description: 'Sticks only to familiar ideas with no exploration of new territory' },
-                { title: 'Critical Thinking', description: 'Little evidence of professional approach or good academic practices' }
+                { title: 'Research & Analysis', description: 'Your tutors are looking for more source information than is currently evidenced in your work. You need to show greater knowledge and understanding of the required skills and practices for this level of study.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors want to see more evidence of technique and exploration of alternatives. Your methods need to be more accurate and appropriate to solve even straightforward problems in your work.' },
+                { title: 'Communication & Presentation', description: 'Your tutors expect more effective use of media and communication conventions in presenting your ideas. Your presentation skills need development to meet the requirements for this level of study.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors are looking for more awareness of your subject and personal strengths. You need to show more evidence of reflection, planning, and application. Your ability to work productively individually or in a team needs further development.' }
               ]
             },
             {
               id: 'fail',
-              title: 'Fail (F)',
+              title: 'Fail',
               range: '0-34%',
-              color: 'bg-red-600',
+              color: 'bg-[#FF0000]',
               textColor: 'text-white',
               qualities: [
-                { title: 'Research', description: 'Little knowledge or understanding of required skills and practices' },
-                { title: 'Design Development', description: 'No attempt to analyze ideas/themes or arguments' },
-                { title: 'Technical Skills', description: 'Poor technical skills with inadequate application of methods' },
-                { title: 'Presentation', description: 'Poor presentation skills that do not meet requirements' },
-                { title: 'Creativity', description: 'No engagement with new ideas or creative development' },
-                { title: 'Critical Thinking', description: 'Does not meet most learning outcomes and lacks academic practice' }
+                { title: 'Research & Analysis', description: 'Your tutors need to see evidence of source information in your work. You must demonstrate knowledge and understanding of the required skills and practices for this level of study.' },
+                { title: 'Experimentation & Practice', description: 'Your tutors expect to see evidence of technical skills and exploration of alternatives. You need to demonstrate adequate application of methods to meet basic requirements.' },
+                { title: 'Communication & Presentation', description: 'Your tutors require effective use of media and communication conventions in presenting your ideas. Your presentation skills must meet minimum requirements for this level of study.' },
+                { title: 'Personal & Professional Development', description: 'Your tutors need to see evidence of awareness of your subject area and personal strengths. You must demonstrate some reflection, planning, and application, and show that you can work productively either individually or in a team.' }
               ]
             }
           ];
@@ -237,7 +223,7 @@
                 {grades.map(grade => (
                   <button
                     key={grade.id}
-                    className={`px-4 py-2 rounded-md font-medium transition-all ${
+                    className={`px-4 py-2 rounded-none font-medium text-base transition-all ${
                       activeGrade === grade.id ? 
                       `${grade.color} ${grade.textColor} ring-2 ring-offset-2 ring-gray-400` : 
                       'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -249,14 +235,14 @@
                 ))}
               </div>
               
-              <div className={`${activeGradeData.color} ${activeGradeData.textColor} p-6 rounded-lg mb-6`}>
+              <div className={`${activeGradeData.color} ${activeGradeData.textColor} p-6 rounded-none mb-6`}>
                 <h2 className="text-xl font-bold mb-2">{activeGradeData.title} ({activeGradeData.range})</h2>
                 <p className="text-lg mb-4">Overall Quality: {
                   activeGrade === 'first-plus' ? 'Outstanding' :
-                  activeGrade === 'first' ? 'Very Good' :
-                  activeGrade === 'upper-second' ? 'Good' :
-                  activeGrade === 'lower-second' ? 'Satisfactory' :
-                  activeGrade === 'third' ? 'Adequate' :
+                  activeGrade === 'first' ? 'Excellent' :
+                  activeGrade === 'upper-second' ? 'Very Good' :
+                  activeGrade === 'lower-second' ? 'Good' :
+                  activeGrade === 'third' ? 'Satisfactory' :
                   activeGrade === 'marginal-fail' ? 'Unsatisfactory' : 'Poor'
                 }</p>
               </div>
@@ -275,7 +261,7 @@
                 </tbody>
               </table>
               
-              <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+              <div className="mt-6 p-4 bg-gray-50 rounded-none border border-gray-200">
                 <h3 className="font-bold mb-2">How to move up to the next grade band:</h3>
                 <ul className="list-disc pl-5 space-y-2">
                   {activeGrade === 'fail' && (
@@ -340,14 +326,111 @@
                 </ul>
               </div>
               
-              <div className="mt-6 p-3 bg-gray-100 border-l-4 border-#ffed00 text-sm text-gray-700">
-                <p>Note: This is a visual interpretation of the Kingston School of Art BA (Hons) Fashion grade descriptors. Always refer to the official grade descriptors in your course handbook for definitive guidance, a link can be found below.</p>
+              <div className="mt-6 p-3 bg-gray-100 border-l-4 border-[#FFF200] text-sm text-gray-700">
+                <p>Note: This is a visual interpretation of the Kingston School of Art BA (Hons) Fashion grade descriptors. Always refer to the official grade descriptors in your course handbook for definitive guidance.</p>
               </div>
               
               <div className="mt-6">
-                <a className="ku-button" href="https://canvas.kingston.ac.uk/courses/32501/pages/full-grade-descriptors" target="_blank">Access full Grade Descriptors</a>
+                <button className="ku-button" onClick={() => setShowMatrix(true)}>Complete Grading Matrix</button>
+                <a className="ku-button ml-4" href="https://canvas.kingston.ac.uk/courses/8255/pages/7-fairness-in-assessment" target="_blank">Fairness in Assessment</a>
                 <a className="ku-button ml-4" href="https://canvas.kingston.ac.uk/courses/32501" title="Back to Module Home Page">Back to Module Home Page</a>
               </div>
+              
+              {/* Grading Matrix Modal */}
+              {showMatrix && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 p-4">
+                  <div className="bg-white p-6 rounded-none max-w-4xl max-h-[90vh] overflow-auto">
+                    <div className="flex justify-between items-center mb-4">
+                      <h3 className="text-xl font-bold">Complete Grading Matrix</h3>
+                      <button 
+                        onClick={() => setShowMatrix(false)}
+                        className="text-gray-600 hover:text-gray-900 text-2xl font-medium"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                    
+                    <div className="mb-4 p-4 bg-gray-50 rounded-none border border-gray-200">
+                      <h4 className="font-bold mb-2">Learning Outcomes & Assessment Criteria</h4>
+                      <p className="mb-2">Each criterion in the matrix relates to one of the 4 program learning outcomes:</p>
+                      <ol className="list-decimal pl-5">
+                        <li><strong>Research and Analysis:</strong> Critical examination of context and interpretation of sources</li>
+                        <li><strong>Experimentation and Practice:</strong> Testing of subject, thinking through making, technique, risk taking and problem solving</li>
+                        <li><strong>Communication and Presentation:</strong> Realisation of intentions and skill in appropriate media with awareness of audience needs</li>
+                        <li><strong>Personal and Professional Development:</strong> Planning, time-management, commitment & subject engagement</li>
+                      </ol>
+                    </div>
+                    
+                    <div className="overflow-x-auto">
+                      <table className="min-w-full">
+                        <thead>
+                          <tr>
+                            <th>Criteria</th>
+                            <th className="bg-[#00FF00] text-black">Distinction (85%+)</th>
+                            <th className="bg-[#7FFF00] text-black">First (70-84%)</th>
+                            <th className="bg-[#FFFF00] text-black">2:1 (60-69%)</th>
+                            <th className="bg-[#FFD700] text-black">2:2 (50-59%)</th>
+                            <th className="bg-[#FFA500] text-black">Third (40-49%)</th>
+                            <th className="bg-[#FF4500] text-white">Marginal Fail (35-39%)</th>
+                            <th className="bg-[#FF0000] text-white">Fail (0-34%)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>Research & Analysis</th>
+                            <td>Exceptional levels of research and synthesis. Original interpretation.</td>
+                            <td>Extensive research, independent synthesis and evaluation.</td>
+                            <td>Wide ranging and well-informed research and accurate evaluation.</td>
+                            <td>Accurate and appropriate research of elements.</td>
+                            <td>Adequate range from standard sources.</td>
+                            <td>Limited source information evidenced.</td>
+                            <td>Little or no source information evidenced.</td>
+                          </tr>
+                          <tr>
+                            <th>Experimentation & Practice</th>
+                            <td>Excellent conceptual exploration and technical skills to innovate.</td>
+                            <td>Unified ideas and technical skills with critical judgement.</td>
+                            <td>Evidence of conceptual risk taking and personal evaluation.</td>
+                            <td>Evidence of exploration of materials and process.</td>
+                            <td>Operates within well-established ideas and processes.</td>
+                            <td>Very limited technique or exploration of alternatives.</td>
+                            <td>Poor technical skills with inadequate methods.</td>
+                          </tr>
+                          <tr>
+                            <th>Communication & Presentation</th>
+                            <td>Extremely clear, detailed and convincing presentation.</td>
+                            <td>Persuasive and convincing engagement of audience.</td>
+                            <td>Very good awareness of audience and context.</td>
+                            <td>Good judgement in organization of materials.</td>
+                            <td>Adequate presentation but may lack professionalism.</td>
+                            <td>Presentation skills not sufficient for this level.</td>
+                            <td>Poor presentation skills that don't meet requirements.</td>
+                          </tr>
+                          <tr>
+                            <th>Personal & Professional Development</th>
+                            <td>Integration of identity in real contexts. Highly productive.</td>
+                            <td>Takes full responsibility for learning. Works in all roles.</td>
+                            <td>Self-directed reflection and planning process.</td>
+                            <td>Actively working to develop understanding.</td>
+                            <td>Evidence of awareness of subject and strengths.</td>
+                            <td>Little evidence of reflection or planning.</td>
+                            <td>No awareness of subject or ability to work productively.</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                    <div className="mt-4 text-center">
+                      <button 
+                        className="ku-button"
+                        onClick={() => setShowMatrix(false)}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           );
         };
